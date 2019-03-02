@@ -62,7 +62,7 @@ module.exports = {
                 .setColor('#388E8E');
                 msg.channel.send(embed);
             });
-        } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `features`, `discord`, `events` and `plugins`.')    
+        } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `feature`, `discord`, `event` and `plugin`.')    
     },
     meta: {
         aliases: ['lookup'],
