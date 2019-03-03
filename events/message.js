@@ -58,7 +58,7 @@ module.exports = {
             client.db.table('events').insert({ id: id, message: msg.id, number: 0 }).run();
             client.db.table('eventsm').insert({ message: msg.id, id: id, number: 0 }).run();         
         } else if (!msg.guild) {
-            if (msg.content.toLowerCase == 'no longer interested') {
+            if (msg.content.toLowerCase() == 'no longer interested') {
                 const council_role = msg.guild.roles.find(role => role.id === client.config.councilid);
                 // we need to call the message author a member of the MH Suggestions guild
                 const member = client.guilds.get('546414872196415501').members.get(msg.author.id);
