@@ -31,7 +31,7 @@ module.exports = {
             let suggmsg = []
             discordsuggestions.forEach(suggestion => {
                 count++;
-                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Count**: ${suggestion.number}`);
+                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
             });
             if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
             const embed = new Discord.RichEmbed()
@@ -45,7 +45,7 @@ module.exports = {
             let suggmsg = []
             eventsuggestions.forEach(suggestion => {
                 count++;
-                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Count**: ${suggestion.number}`);
+                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
             });
             if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
             const embed = new Discord.RichEmbed()
@@ -59,7 +59,7 @@ module.exports = {
             let suggmsg = []
             featuresuggestions.forEach(suggestion => {
                 count++;
-                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Count**: ${suggestion.number}`);
+                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
             });
             if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
             const embed = new Discord.RichEmbed()
@@ -73,7 +73,7 @@ module.exports = {
             let suggmsg = []
             pluginsuggestions.forEach(suggestion => {
                 count++;
-                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Count**: ${suggestion.number}`);
+                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
             });
             if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
             const embed = new Discord.RichEmbed()

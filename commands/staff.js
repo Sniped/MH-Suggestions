@@ -40,6 +40,7 @@ module.exports = {
                         winners.forEach(function(winners) {
                             const user = client.guilds.get('546414872196415501').members.get(winners);
                             user.addRole(client.config.councilid);
+                            user.send('Congratulations! You have been selected to join the Minehut Suggestions council team and review suggestions! If you\'re not interested in joining the team, or if you\'d like to resign, you can at any time reply with `No longer interested` and get your rank taken away.');
                         });
                         // now it's time to remove the reactions from the message
                         u.forEach(u => {
