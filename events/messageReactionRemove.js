@@ -17,15 +17,11 @@ module.exports = {
         } else return;
 
         if (messageReaction.emoji.id == '546435721444196353') {
-            try {
-                if (user.id == client.user.id) return;
-                const data = await client.db.table(channel).get(messageReaction.message.id).run();
-                const num2insert = data.number-1
-                client.db.table(channel).get(messageReaction.message.id).update({ number: num2insert }).run();
-                client.db.table(channelm).get(data.id).update({ number: num2insert }).run();
-            } catch (err) {
-                return;
-            }
+            if (user.id == client.user.id) return;
+            const data = await client.db.table(channelm).get(messageReaction.message.id).run();
+            const num2insert = data.number-1
+            client.db.table(channelm).get(messageReaction.message.id).update({ number: num2insert }).run();
+            client.db.table(channel).get(data.id).update({ number: num2insert }).run();
         } else return;
     }
 }
