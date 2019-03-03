@@ -34,7 +34,6 @@ module.exports = {
                             return candidates;
                         }
                         const randomwinners = getWinners(ids);
-                        console.log(randomwinners);
                         const winners = [ randomwinners[0], randomwinners[1], randomwinners[2], randomwinners[3], randomwinners[4] ]
                         // since winners has been given 5 ids, let's go through them
                         winners.forEach(function(winners) {
