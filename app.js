@@ -41,14 +41,12 @@ client.on('raw', packet => {
     });
 });
 
-var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
-
 client.on('warn', e => {
-  console.log((e.replace(regToken, 'that was redacted')));
+  console.log('that was redacted');
 });
 
 client.on('error', e => {
-  console.log((e.replace(regToken, 'that was redacted')));
+  console.log('that was redacted');
 });
 
 client.elevation = msg => {
