@@ -7,5 +7,11 @@ module.exports = {
         if (!member.roles.has(council_role.id)) return msg.channel.send(':x: You\'re not apart of the council!');
         member.removeRole(council_role.id);
         msg.channel.send(':white_check_mark: You have successfully resigned from the council team!');        
+    },
+    meta: {
+        aliases: ['resign'],
+        description: 'Resign from council',
+        permlvl: 0,
+        usage: ''        
     }
 }
