@@ -35,12 +35,18 @@ module.exports = {
                         }
                         const randomwinners = getWinners(ids);
                         const winners = [ randomwinners[0], randomwinners[1], randomwinners[2], randomwinners[3], randomwinners[4] ]
+                        const fail2send = []
                         // since winners has been given 5 ids, let's go through them
                         winners.forEach(function(winners) {
                             const user = client.guilds.get('546414872196415501').members.get(winners);
                             user.addRole(client.config.councilid);
-                            user.send('Congratulations! You have been selected to join the Minehut Suggestions council team and review suggestions! If you\'re not interested in joining the team, or if you\'d like to resign, you can at any time reply with `No longer interested` and get your rank taken away.');
+                            try {
+                                user.send('Congratulations! You have been selected to join the Minehut Suggestions council team and review suggestions! If you\'re not interested in joining the team, or if you\'d like to resign, you can at any time reply with `No longer interested` and get your rank taken away.');
+                            } catch (err) {
+                                fail2send.push(u.id);
+                            }
                         });
+                        if (fail2send.length != 0) return msg.channel.send(`Couldn't DM the following users **${fail2send.join(' ,')}.`);
                         // now it's time to remove the reactions from the message
                         u.forEach(u => {
                             if (!u.bot) {
