@@ -11,10 +11,9 @@ module.exports = {
             const channel = client.channels.get(client.config.featurechannel)
             channel.fetchMessage(data.message).then(m => {
                 const emoji = client.emojis.get('546435753719103488');
-                console.log(m.reactions);
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
-                .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}\n\n**Downvotes**: ${m.reactions.get(emoji.id).count-1}`)
+                .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}\n\n**Downvotes**: ${m.reactions.get(':no:546435753719103488').count-1}`)
                 .setThumbnail(m.author.avatarURL)
                 .setColor('#388E8E');
                 msg.channel.send(embed);
