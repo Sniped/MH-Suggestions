@@ -95,16 +95,13 @@ module.exports = {
             const user = msg.mentions.users.first();
             if (msg.mentions.users.size < 1) return msg.channel.send(':x: You must mention someone who is banned from the council!');
             const data = await client.db.table('userData').get(user.id).run();
-            if (data.banned == false) return msg.channel.send(':x: The user you mentioned isn\'t banned.');
-            const reason = args.slice(2).join(' ');
-            if (!reason) return msg.channel.send(':x: You must include a reason for unbanning this user!');
-            const numData = await client.db.table('nData').get('punishments').run();
+            if (data.banned == false) return msg.channel.send(':x: The user you mentioned isn\'t banned.');            const numData = await client.db.table('nData').get('punishments').run();
             const id = numData.number;
             const num2insert = numData.number+1;
-            client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id }, type: 'UNBAN', reason: reason }).run();
+            client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id }, type: 'UNBAN' }).run();
             client.db.table('nData').get('punishments').update({ number: num2insert }).run();
             client.db.table('userData').get(user.id).update({ banned: false }).run();
-            msg.channel.send(`:white_check_mark: Successfully unbanned **${user.username}** from the council team for **${reason}**. The ID for this infraction is **${id}**.`);
+            msg.channel.send(`:white_check_mark: Successfully unbanned **${user.username}** from the council team. The ID for this infraction is **${id}**.`);
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, and `unban`.');
     },
     meta: {
