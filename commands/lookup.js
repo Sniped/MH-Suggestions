@@ -10,7 +10,8 @@ module.exports = {
             if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
             const channel = client.channels.get(client.config.featurechannel)
             channel.fetchMessage(data.message).then(m => {
-                const rmsg = m.reactions.get(client.emojis.get('546435753719103488'));
+                const emoji = client.emojis.get('546435753719103488');
+                const rmsg = m.reactions.get(emoji.id);
                 const downvote = rmsg.count;
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
@@ -27,7 +28,8 @@ module.exports = {
             if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
             const channel = client.channels.get(client.config.discordchannel);
             channel.fetchMessage(data.message).then(m => {
-                const rmsg = m.reactions.get(client.emojis.get('546435753719103488'));
+                const emoji = client.emojis.get('546435753719103488');
+                const rmsg = m.reactions.get(emoji.id);
                 const downvote = rmsg.count;
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
@@ -44,7 +46,8 @@ module.exports = {
             if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
             const channel = client.channels.get(client.config.eventchannel);
             channel.fetchMessage(data.message).then(m => {
-                const rmsg = m.reactions.get(client.emojis.get('546435753719103488'));
+                const emoji = client.emojis.get('546435753719103488');
+                const rmsg = m.reactions.get(emoji.id);
                 const downvote = rmsg.count;
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
@@ -61,7 +64,8 @@ module.exports = {
             if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
             const channel = client.channels.get(client.config.pluginchannel);
             channel.fetchMessage(data.message).then(m => {
-                const rmsg = m.reactions.get(client.emojis.get('546435753719103488'));
+                const emoji = client.emojis.get('546435753719103488');
+                const rmsg = m.reactions.get(emoji.id);
                 const downvote = rmsg.count;
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
