@@ -20,6 +20,7 @@ module.exports = {
             if (user.id == client.user.id) return;
             const data = await client.db.table(channelm).get(messageReaction.message.id).run();
             const num2insert = data.number-1
+            if (num2insert < 0) return;
             client.db.table(channelm).get(messageReaction.message.id).update({ number: num2insert }).run();
             client.db.table(channel).get(data.id).update({ number: num2insert }).run();
         } else return;
