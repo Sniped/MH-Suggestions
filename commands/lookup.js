@@ -12,7 +12,6 @@ module.exports = {
             channel.fetchMessage(data.message).then(m => {
                 const rmsg = m.reactions.get('546435753719103488');
                 const downvote = rmsg.count;
-                const m = rmsg.message;
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
                 .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}\n\n**Downvotes**: ${downvote-1}`)
@@ -30,7 +29,6 @@ module.exports = {
             channel.fetchMessage(data.message).then(m => {
                 const rmsg = m.reactions.get('546435753719103488');
                 const downvote = rmsg.count;
-                const m = rmsg.message;
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
                 .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}\n\n**Downvotes**: ${downvote-1}`)
@@ -48,7 +46,6 @@ module.exports = {
             channel.fetchMessage(data.message).then(m => {
                 const rmsg = m.reactions.get('546435753719103488');
                 const downvote = rmsg.count;
-                const m = rmsg.message;
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
                 .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}\n\n**Downvotes**: ${downvote-1}`)
@@ -66,7 +63,6 @@ module.exports = {
             channel.fetchMessage(data.message).then(m => {
                 const rmsg = m.reactions.get('546435753719103488');
                 const downvote = rmsg.count;
-                const m = rmsg.message;
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
                 .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}\n\n**Downvotes**: ${downvote-1}`)
