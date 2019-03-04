@@ -57,6 +57,15 @@ module.exports = {
             client.db.table('nData').get('events').update({ number: num2insert }).run();
             client.db.table('events').insert({ id: id, message: msg.id, number: 0 }).run();
             client.db.table('eventsm').insert({ message: msg.id, id: id, number: 0 }).run();         
+        } else if (!msg.guild) {
+            if (msg.content.toLowerCase() == 'no longer interested') {
+                const council_role = client.guilds.get('546414872196415501').roles.find(role => role.id === client.config.councilid);
+                // we need to call the message author a member of the MH Suggestions guild
+                const member = client.guilds.get('546414872196415501').members.get(msg.author.id);
+                if (!member.roles.has(council_role.id)) return msg.channel.send(':x: You\'re not apart of the council!');
+                member.removeRole(council_role.id);
+                msg.channel.send(':white_check_mark: You have successfully resigned from the council team!'); 
+            }
         }      
     }
 }
