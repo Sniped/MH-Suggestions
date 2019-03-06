@@ -67,7 +67,7 @@ module.exports = {
             const numData = await client.db.table('nData').get('punishments').run()
             const id = numData.number;
             const num2insert = numData.number+1;
-            client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id }, type: 'KICK', reason: reason }).run();
+            client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id, avatarURL: user.avatarURL }, author: { name: msg.author.username, id: msg.author.id }, type: 'KICK', date: new Date(), active: false, reason: reason }).run();
             client.db.table('nData').get('punishments').update({ number: num2insert }).run();
             member.removeRole(council_role.id);
             msg.channel.send(`:white_check_mark: Successfully kicked **${user.username}** for **${reason}**. The ID for this infraction is **${id}**.`);
@@ -78,6 +78,8 @@ module.exports = {
             const council_role = msg.guild.roles.get(client.config.councilid);
             const reason = args.slice(2).join(' ');
             if (!reason) return msg.channel.send(':x: You must include a reason for banning this user!');
+            const uData = await client.db.table('userData').get(user.id).run();
+            if (uData.banned == true) return msg.channel.send(':x: This user is already banned!');
             const numData = await client.db.table('nData').get('punishments').run();
             const id = numData.number;
             const num2insert = numData.number+1;
@@ -93,7 +95,7 @@ module.exports = {
                     }
                 });
             });
-            client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id }, type: 'BAN', reason: reason }).run();
+            client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id, avatarURL: user.avatarURL }, author: { name: msg.author.username, id: msg.author.id }, type: 'BAN', date: new Date(), active: true, reason: reason }).run();
             client.db.table('nData').get('punishments').update({ number: num2insert }).run();
             client.db.table('userData').get(user.id).update({ banned: true }).run();
             msg.channel.send(`:white_check_mark: Successfully banned **${user.username}** from the council team for **${reason}**. The ID for this infraction is **${id}**.`);
@@ -101,10 +103,13 @@ module.exports = {
             const user = msg.mentions.users.first();
             if (msg.mentions.users.size < 1) return msg.channel.send(':x: You must mention someone who is banned from the council!');
             const data = await client.db.table('userData').get(user.id).run();
-            if (data.banned == false) return msg.channel.send(':x: The user you mentioned isn\'t banned.');            const numData = await client.db.table('nData').get('punishments').run();
+            if (data.banned == false) return msg.channel.send(':x: The user you mentioned isn\'t banned.');            
+            const numData = await client.db.table('nData').get('punishments').run();
             const id = numData.number;
             const num2insert = numData.number+1;
-            client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id }, type: 'UNBAN' }).run();
+            const pun = await client.db.table('punishments').filter({ user: { id: user.id }, active: true }).run();
+            client.db.table('punishments').get(pun.id).update({ active: false }).run();
+            client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id, avatarURL: user.avatarURL }, author: { name: msg.author.username, id: msg.author.id }, type: 'UNBAN', date: new Date(), active: false, reason: reason }).run();
             client.db.table('nData').get('punishments').update({ number: num2insert }).run();
             client.db.table('userData').get(user.id).update({ banned: false }).run();
             msg.channel.send(`:white_check_mark: Successfully unbanned **${user.username}** from the council team. The ID for this infraction is **${id}**.`);

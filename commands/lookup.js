@@ -68,12 +68,20 @@ module.exports = {
             const id = parseInt(args[1], 10);
             const data = await client.db.table('punishments').get(id).run();
             if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
-            const user = client.users.get(data.user.id);
+            function getColor(data) {
+                let color;
+                if (data.active == false) {
+                    color = '#32CD32'
+                } else if (data.active == true) {
+                    color = '#FF0000'
+                }
+                return color;
+            }
             const embed = new Discord.RichEmbed()
             .setTitle(`Showing data for ${data.type} ${data.id}`)
-            .setDescription(`**ID**: ${data.id}\n\n**Punished**: ${data.user.name}\n\n**Reason**: ${data.reason}`)
-            .setThumbnail(user.avatarURL)
-            .setColor('#388E8E');
+            .setDescription(`**ID**: ${data.id}\n\n**Punished**: ${data.user.name}\n\n**Punished By:** ${data.author.name}\n\n**Active:** ${data.active}\n\n**Date Punished**: ${data.date}\n\n**Reason**: ${data.reason}`)
+            .setThumbnail(data.user.avatarURL)
+            .setColor(getColor(data));
             msg.channel.send(embed);
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `feature`, `discord`, `event` and `plugin`.')    
     },
