@@ -68,6 +68,7 @@ module.exports = {
             const id = parseInt(args[1], 10);
             const data = await client.db.table('punishments').get(id).run();
             if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
+            console.log(data.user.id);
             const user = client.users.get(data.user.id);
             const embed = new Discord.RichEmbed()
             .setTitle(`Showing data for ${data.type} ${data.id}`)
