@@ -108,8 +108,11 @@ module.exports = {
             const id = numData.number;
             const num2insert = numData.number+1;
             const pun = await client.db.table('punishments').filter({ user: { id: user.id }, active: true }).run();
-            console.log(pun);
-            client.db.table('punishments').get(pun.id).update({ active: false }).run();
+            const ids = []; // this should only get one
+            pun.forEach(p => {
+                ids.push(p.id)
+            });
+            client.db.table('punishments').get(ids[0]).update({ active: false }).run();
             client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id, avatarURL: user.avatarURL }, author: { name: msg.author.username, id: msg.author.id }, type: 'UNBAN', date: new Date(), active: false }).run();
             client.db.table('nData').get('punishments').update({ number: num2insert }).run();
             client.db.table('userData').get(user.id).update({ banned: false }).run();

@@ -77,9 +77,16 @@ module.exports = {
                 }
                 return color;
             }
+            function getReason(data) {
+                let reason;
+                if (data.type == 'UNBAN') {
+                    reason = 'None'
+                } else reason = data.reason;
+                return reason;
+            }
             const embed = new Discord.RichEmbed()
             .setTitle(`Showing data for ${data.type} ${data.id}`)
-            .setDescription(`**ID**: ${data.id}\n\n**Punished**: ${data.user.name}\n\n**Punished By:** ${data.author.name}\n\n**Active:** ${data.active}\n\n**Date Punished**: ${data.date}\n\n**Reason**: ${data.reason}`)
+            .setDescription(`**ID**: ${data.id}\n\n**Punished**: ${data.user.name}\n\n**Punished By:** ${data.author.name}\n\n**Active:** ${data.active}\n\n**Date Punished**: ${data.date}\n\n**Reason**: ${getReason(data)}`)
             .setThumbnail(data.user.avatarURL)
             .setColor(getColor(data));
             msg.channel.send(embed);
