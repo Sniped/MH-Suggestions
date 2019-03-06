@@ -62,6 +62,19 @@ module.exports = {
                 .setColor('#388E8E');
                 msg.channel.send(embed);
             });   
+        } else if (args[0] == 'punishment') {
+            if (!args[1]) return msg.channel.send(':x: You must include an ID.');
+            if (Number(args[1]) == NaN) return msg.channel.send(':x: Your ID must be a number.');
+            const id = parseInt(args[1], 10);
+            const data = await client.db.table('punishments').get(id).run();
+            if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
+            const user = client.users.get(data.user.id);
+            const embed = new Discord.RichEmbed()
+            .setTitle(`Showing data for ${data.type} ${data.id}`)
+            .setDescription(`**ID**: ${data.id}\n\n**Punished**: ${data.user.name}\n\n**Reason**: ${data.reason}`)
+            .setThumbanil(user.avatarURL)
+            .setColor('#388E8E');
+            msg.channel.send(embed);
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `feature`, `discord`, `event` and `plugin`.')    
     },
     meta: {
