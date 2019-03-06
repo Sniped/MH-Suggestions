@@ -19,6 +19,26 @@ module.exports = {
                             if (!u.bot) {
                                 ids.push(u.id);
                             }
+
+                            msg.guild.fetchInvites().then(invites => {
+                                const uinvites = invites.find(invite => invite.inviter.id === u.id);
+                                if (uinvites.length != 0) {
+                                    uinvites.forEach(i => {
+                                        // since we already got rid of candidates without any invites, let's call a loop so for every 5 invites this user has, they get another entry
+                                        let uses = i.uses;
+                                        while (uses > 5) {
+                                            ids.push(u.id);
+                                            uses-5;
+                                        }
+                                    });
+                                }
+                            });
+                        });
+                        // we're done with invites now, so we can delete them all
+                        msg.guild.fetchInvites().then(i => {
+                            i.forEach(invite => {
+                                invite.delete();
+                            });
                         });
                         if (ids.length < 5) return msg.channel.send(':x: There are not enough people to reset the council team! **Anyone on the council team before has been removed.**');
                         const getWinners = function(candidates) {
@@ -34,7 +54,14 @@ module.exports = {
                             return candidates;
                         }
                         const randomwinners = getWinners(ids);
-                        const winners = [ randomwinners[0], randomwinners[1], randomwinners[2], randomwinners[3], randomwinners[4] ]
+                        const winners = []
+                        randomwinners.forEach(w => {
+                            while (winners.length < 5) {
+                                if (!winners.includes(w)) {
+                                    winners.push(w);
+                                }
+                            }
+                        });
                         const fail2send = []
                         // since winners has been given 5 ids, let's go through them
                         winners.forEach(function(winners) {
