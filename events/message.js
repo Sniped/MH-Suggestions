@@ -31,8 +31,7 @@ module.exports = {
             client.db.table('features').insert({ id: id, message: msg.id, number: 0 }).run();
             client.db.table('featuresm').insert({ message: msg.id, id: id, number: 0 }).run();            
         } else if (msg.channel.id == client.config.pluginchannel && msg.author.id != client.user.id) {
-            msg.react(client.emojis.get('546435721444196353'))
-            .then(msg.react(client.emojis.get('546435753719103488')));
+            msg.react(client.emojis.get('546435721444196353')).then(msg.react(client.emojis.get('546435753719103488')));
             const nData = await client.db.table('nData').get('plugins').run();
             const id = nData.number
             const num2insert = nData.number+1
@@ -40,8 +39,7 @@ module.exports = {
             client.db.table('plugins').insert({ id: id, message: msg.id, number: 0 }).run();
             client.db.table('pluginsm').insert({ message: msg.id, id: id, number: 0 }).run();           
         } else if (msg.channel.id == client.config.discordchannel && msg.author.id != client.user.id) {
-            msg.react(client.emojis.get('546435721444196353'))
-            .then(msg.react(client.emojis.get('546435753719103488')));
+            msg.react(client.emojis.get('546435721444196353')).then(msg.react(client.emojis.get('546435753719103488')));
             const nData = await client.db.table('nData').get('discord').run();
             const id = nData.number
             const num2insert = nData.number+1
@@ -49,8 +47,7 @@ module.exports = {
             client.db.table('discord').insert({ id: id, message: msg.id, number: 0 }).run();
             client.db.table('discordm').insert({ message: msg.id, id: id, number: 0 }).run();            
         } else if (msg.channel.id == client.config.eventchannel && msg.author.id != client.user.id) {
-            msg.react(client.emojis.get('546435721444196353'))
-            .then(msg.react(client.emojis.get('546435753719103488')));
+            msg.react(client.emojis.get('546435721444196353')).then(msg.react(client.emojis.get('546435753719103488')));
             const nData = await client.db.table('nData').get('events').run();
             const id = nData.number
             const num2insert = nData.number+1
