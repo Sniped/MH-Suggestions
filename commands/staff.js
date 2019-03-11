@@ -57,9 +57,7 @@ module.exports = {
                         const winners = []
                         randomwinners.forEach(w => {
                             while (winners.length < 5) {
-                                if (!winners.includes(w)) {
-                                    winners.push(w);
-                                }
+                                winners.push(w);
                             }
                         });
                         const fail2send = []
