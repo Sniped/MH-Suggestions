@@ -66,7 +66,7 @@ module.exports = {
         } else if (msg.channel.id == '551915746503163911') {
             const user = await client.db.table('userData').get(msg.author.id).run();
             const member = msg.guild.members.get(msg.author.id);
-            if (!member.roles.has('546420543713312800') && !member.roles.has('546415221212839947')) {
+            if (!member.roles.has('546420543713312800') && !member.roles.has('546415221212839947') && !msg.author.bot) {
                 client.db.table('userData').get(msg.author.id).update({ activity: user.activity++ }).run();
             } else return;
         }      
