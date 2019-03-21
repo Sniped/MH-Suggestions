@@ -63,6 +63,12 @@ module.exports = {
                 member.removeRole(council_role.id);
                 msg.channel.send(':white_check_mark: You have successfully resigned from the council team!'); 
             }
+        } else if (msg.channel.id == '551915746503163911') {
+            const user = await client.db.table('userData').get(msg.author.id).run();
+            const member = msg.guild.members.get(msg.author.id);
+            if (!member.roles.has('546420543713312800')) {
+                client.db.table('userData').get(msg.author.id).update({ activity: user.activity++ }).run();
+            } else return;
         }      
     }
 }

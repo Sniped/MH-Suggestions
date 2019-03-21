@@ -2,7 +2,20 @@ module.exports = {
     run: async (client, msg, args) => {
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, and `unban`.');
         if (args[0] == 'reset') {
-            msg.channel.send(':x: This command is currently being worked on!');
+            msg.guild.members.forEach(m => {
+                if (m.roles.has('546420543713312800') && !m.roles.has('556967344459481108')) {
+                    m.removeRole('546420543713312800');
+                }
+            });
+            const winners = await client.db.table('userData').orderBy(client.db.desc('activity')).limit(5).run();
+            winners.forEach(w => {
+                const user = client.guilds.get('5464148721964155011').members.get(w.id);
+                user.addRole('546420543713312800');
+            });
+            msg.guild.members.forEach(m => {
+                client.db.table('userData').get(m.id).update({ activity: 0 }).run();
+            });
+            msg.channel.send(`:white_check_mark: The top ${winners.length} people that have chatted in #suggestions-meta have been given council!`);
         } else if (args[0] == 'kick') {
             const user = msg.mentions.users.first();
             if (msg.mentions.users.size < 1) return msg.channel.send(':x: You must mention a council member!');
