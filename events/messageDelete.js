@@ -20,7 +20,8 @@ module.exports = {
             updateDB(channel, channelm, msg);
         } else if (msg.channel.id == client.config.metachannel) {
             const user = await client.db.table(userData).get(msg.author.id).run();
-            client.db.table('userData').get(msg.author.id).update({ activity: user.activity-- }).run();
+            const newact = user.activity - 1
+            client.db.table('userData').get(msg.author.id).update({ activity: newact }).run();
         }
         
         async function updateDB(channel, channelm, msg) {
