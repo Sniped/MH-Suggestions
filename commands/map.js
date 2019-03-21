@@ -21,7 +21,7 @@ module.exports = {
         mostactivepeople.forEach(map => {
             count++;
             const user = client.users.get(map.id);
-            activemsg.push(`${getEmoji(count)} **ID**: ${user.tag} | **Messages**: ${map.activity}`);
+            activemsg.push(`${getEmoji(count)} **Name**: ${user.tag} | **Messages**: ${map.activity}`);
         });
         const embed = new Discord.RichEmbed()
         embed.setTitle('Showing the top 5 most active people in suggestions-meta')
