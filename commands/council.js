@@ -14,7 +14,7 @@ module.exports = {
                     winnercheck.push(w.id);
                 }
             });
-            if (winnercheck.length == 0) return msg.channel.send(':x: Nobody is active on suggestions-meta!');
+            if (winnercheck.length == 0) return msg.channel.send(':x: Nobody is active on suggestions-meta! **NOTE**: Council members without the "Permanent Council" role have been removed from council.');
             winnercheck.forEach(w => {
                 const user = client.guilds.get('546414872196415501').members.get(w.id);
                 user.addRole('546420543713312800');
