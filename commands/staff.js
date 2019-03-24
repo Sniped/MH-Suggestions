@@ -44,17 +44,7 @@ module.exports = {
             const id = numData.number;
             const num2insert = numData.number+1;
             if (member.roles.has(council_role.id)) member.removeRole(council_role.id);
-            client.channels.get('546800461387399184').fetchMessage('548244848856268810').then(cmsg => {
-                cmsg.reactions.get('👍').fetchUsers().then(u => {
-                    const ids = [];
-                    u.forEach(u => {
-                        ids.push(u.id);
-                    });
-                    if (ids.includes(user.id)) {
-                        cmsg.reactions.get('👍').remove(user);
-                    }
-                });
-            });
+            client.db.table('userData').get(user.id).update({ activity: 0 }).run();
             client.db.table('punishments').insert({ id: id, user: { name: user.username, id: user.id, avatarURL: user.avatarURL }, author: { name: msg.author.username, id: msg.author.id }, type: 'BAN', date: new Date(), active: true, reason: reason }).run();
             client.db.table('nData').get('punishments').update({ number: num2insert }).run();
             client.db.table('userData').get(user.id).update({ banned: true }).run();
