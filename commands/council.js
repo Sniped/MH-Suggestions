@@ -12,7 +12,7 @@ module.exports = {
             });
             const winners = await client.db.table('userData').orderBy(client.db.desc('activity')).limit(5).run();
             winners.forEach(w => {
-                const user = client.guilds.get('5464148721964155011').fetchMembers().get(w.id);
+                const user = client.guilds.get('546414872196415501').members.get(w.id);
                 user.addRole('546420543713312800');
                 user.send(`Congratulations! You were one of the top 5 most active users in suggestions-meta. Therefore, you have become a council member. If you would like to resign from your position, you can reply back to this message with \`no longer interested\`.`);
             });
