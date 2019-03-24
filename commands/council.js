@@ -76,7 +76,13 @@ module.exports = {
                 bannedu.push(u.tag);
             });
             const banlist = `\`\`\`${bannedu.join(', ')}\`\`\``
-            msg.channel.send(`Now showing the ${bannedu.length} users that are banned from the council\n\n${banlist}`);
+            function grammercheck() {
+                let check;
+                if (bannedu.length == 1) {
+                    check = 'user';
+                } else check = 'users';
+            }
+            msg.channel.send(`Now showing the ${bannedu.length} ${grammercheck()} that are banned from the council\n\n${banlist}`);
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
     },
     meta: {
