@@ -81,6 +81,7 @@ module.exports = {
                 if (bannedu.length == 1) {
                     check = 'user';
                 } else check = 'users';
+                return check;
             }
             msg.channel.send(`Now showing the ${bannedu.length} ${grammercheck()} that are banned from the council\n\n${banlist}`);
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
