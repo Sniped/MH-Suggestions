@@ -83,7 +83,14 @@ module.exports = {
                 } else check = 'users';
                 return check;
             }
-            msg.channel.send(`Now showing the ${bannedu.length} ${grammercheck()} that are banned from the council\n\n${banlist}`);
+            function grammercheck1() {
+                let check;
+                if (bannedu.length == 1) {
+                    check = 'is';
+                } else check = 'are';
+                return check;
+            }
+            msg.channel.send(`Now showing the ${bannedu.length} ${grammercheck()} that ${grammercheck1()} banned from the council\n\n${banlist}`);
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
     },
     meta: {
