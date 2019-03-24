@@ -2,13 +2,10 @@ module.exports = {
     run: async (client, msg, args) => {
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
         if (args[0] == 'reset') {
-            msg.guild.fetchMembers().then(m => {
-                const mem = [ m ];
-                mem.forEach(gm => {
-                    if (gm.roles.has('546420543713312800') && !gm.roles.has('556967344459481108')) {
-                        gm.removeRole('546420543713312800');
-                    }
-                });
+            msg.guild.members.forEach(m => {
+                if (m.roles.has('546420543713312800') && !m.roles.has('556967344459481108')) {
+                    m.removeRole('546420543713312800');
+                }                
             });
             const winners = await client.db.table('userData').orderBy(client.db.desc('activity')).limit(5).run();
             winners.forEach(w => {
@@ -16,11 +13,8 @@ module.exports = {
                 user.addRole('546420543713312800');
                 user.send(`Congratulations! You were one of the top 5 most active users in suggestions-meta. Therefore, you have become a council member. If you would like to resign from your position, you can reply back to this message with \`no longer interested\`.`);
             });
-            msg.guild.fetchMembers().then(m => {
-                const mem = [ m ];
-                mem.forEach(gm => {
-                    client.db.table('userData').get(gm.id).update({ activity: 0 }).run();
-                });
+            msg.guild.members.forEach(m => {
+                client.db.table('userData').get(m.id).update({ activity: 0 }).run();
             });
             msg.channel.send(`:white_check_mark: The top ${winners.length} people that have chatted in #suggestions-meta have been given council!`);
         } else if (args[0] == 'kick') {
