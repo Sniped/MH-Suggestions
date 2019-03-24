@@ -2,10 +2,12 @@ module.exports = {
     run: async (client, msg, args) => {
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
         if (args[0] == 'reset') {
-            msg.guild.members.forEach(m => {
-                if (m.roles.has('546420543713312800') && !m.roles.has('556967344459481108')) {
-                    m.removeRole('546420543713312800');
-                }
+            msg.guild.fetchMembers().then(m => {
+                m.forEach(gm => {
+                    if (gm.roles.has('546420543713312800') && !gm.roles.has('556967344459481108')) {
+                        gm.removeRole('546420543713312800');
+                    }
+                });
             });
             const winners = await client.db.table('userData').orderBy(client.db.desc('activity')).limit(5).run();
             winners.forEach(w => {
