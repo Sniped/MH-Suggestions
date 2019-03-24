@@ -16,7 +16,7 @@ module.exports = {
                 user.addRole('546420543713312800');
                 user.send(`Congratulations! You were one of the top 5 most active users in suggestions-meta. Therefore, you have become a council member. If you would like to resign from your position, you can reply back to this message with \`no longer interested\`.`);
             });
-            msg.guild.fetchmembers().then(m => {
+            msg.guild.fetchMembers().then(m => {
                 const mem = [ m ];
                 mem.forEach(gm => {
                     client.db.table('userData').get(gm.id).update({ activity: 0 }).run();
