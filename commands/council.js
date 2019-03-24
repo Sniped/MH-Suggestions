@@ -1,6 +1,6 @@
 module.exports = {
     run: async (client, msg, args) => {
-        if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, and `unban`.');
+        if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
         if (args[0] == 'reset') {
             msg.guild.members.forEach(m => {
                 if (m.roles.has('546420543713312800') && !m.roles.has('556967344459481108')) {
@@ -67,7 +67,17 @@ module.exports = {
             client.db.table('nData').get('punishments').update({ number: num2insert }).run();
             client.db.table('userData').get(user.id).update({ banned: false }).run();
             msg.channel.send(`:white_check_mark: Successfully unbanned **${user.username}** from the council team. The ID for this infraction is **${id}**.`);
-        } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, and `unban`.');
+        } else if (args[0] == 'banlist') {
+            const banned = await client.db.table('userData').filter({ banned: true }).run();
+            if (banned.length == 0) return msg.channel.send(':x: Nobody is banned!');
+            const bannedu = [];
+            banned.forEach(b => {
+                const u = client.users.get(b.id);
+                bannedu.push(u.tag);
+            });
+            const banlist = `\`\`\`${bannedu.join(', ')}\`\`\``
+            msg.channel.send(`Now showing the ${bannedu.length} users that are banned from the council\n\n${banlist}`);
+        } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
     },
     meta: {
         aliases: ['council'],
