@@ -19,12 +19,15 @@ module.exports = {
         var count = 0;
         let activemsg = [];
         mostactivepeople.forEach(map => {
-            count++;
-            const user = client.users.get(map.id);
-            activemsg.push(`${getEmoji(count)} **Name**: ${user.tag} | **Messages**: ${map.activity}`);
+            if (map.activity != 0) {
+                count++;
+                const user = client.users.get(map.id);
+                activemsg.push(`${getEmoji(count)} **Name**: ${user.tag} | **Messages**: ${map.activity}`);
+            }
         });
+        if (activemsg.length == 0) return msg.channel.send(':x: Nobody is active on suggestions-meta!');
         const embed = new Discord.RichEmbed()
-        embed.setTitle('Showing the top 5 most active people in suggestions-meta')
+        embed.setTitle(`Showing the top ${activemsg.length} most active people in suggestions-meta`)
         embed.setColor('#388E8E')
         embed.setDescription(activemsg.join('\n\n'));
         msg.channel.send(embed);

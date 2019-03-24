@@ -8,7 +8,14 @@ module.exports = {
                 }                
             });
             const winners = await client.db.table('userData').orderBy(client.db.desc('activity')).limit(5).run();
+            const winnercheck = [];
             winners.forEach(w => {
+                if (w.activity != 0) {
+                    winnercheck.push(w.id);
+                }
+            });
+            if (winnercheck.length == 0) return msg.channel.send(':x: Nobody is active on suggestions-meta!');
+            winnercheck.forEach(w => {
                 const user = client.guilds.get('546414872196415501').members.get(w.id);
                 user.addRole('546420543713312800');
                 user.send(`Congratulations! You were one of the top 5 most active users in suggestions-meta. Therefore, you have become a council member. If you would like to resign from your position, you can reply back to this message with \`no longer interested\`.`);
@@ -16,7 +23,7 @@ module.exports = {
             msg.guild.members.forEach(m => {
                 client.db.table('userData').get(m.id).update({ activity: 0 }).run();
             });
-            msg.channel.send(`:white_check_mark: The top ${winners.length} people that have chatted in #suggestions-meta have been given council!`);
+            msg.channel.send(`:white_check_mark: The top ${winnercheck.length} people that have chatted in #suggestions-meta have been given council!`);
         } else if (args[0] == 'kick') {
             const user = msg.mentions.users.first();
             if (msg.mentions.users.size < 1) return msg.channel.send(':x: You must mention a council member!');
