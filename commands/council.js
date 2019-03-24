@@ -3,6 +3,7 @@ module.exports = {
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
         if (args[0] == 'reset') {
             msg.guild.fetchMembers().then(m => {
+                console.log(m);
                 m.forEach(gm => {
                     if (gm.roles.has('546420543713312800') && !gm.roles.has('556967344459481108')) {
                         gm.removeRole('546420543713312800');
