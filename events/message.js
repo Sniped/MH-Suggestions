@@ -61,6 +61,7 @@ module.exports = {
                 const member = client.guilds.get('546414872196415501').members.get(msg.author.id);
                 if (!member.roles.has(council_role.id)) return msg.channel.send(':x: You\'re not apart of the council!');
                 member.removeRole(council_role.id);
+                client.channels.get('551789090916532224').send(`:warning: <@${member.id}> has resigned from the council team.`);
                 msg.channel.send(':white_check_mark: You have successfully resigned from the council team!'); 
             }
         } else if (msg.channel.id == '551915746503163911') {
