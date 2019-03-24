@@ -70,8 +70,8 @@ module.exports = {
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, and `unban`.');
     },
     meta: {
-        aliases: ['staff'],
-        description: 'Manage the staff team.',
+        aliases: ['council'],
+        description: 'Manage the council team.',
         permlvl: 4,
         usage: ''        
     }
