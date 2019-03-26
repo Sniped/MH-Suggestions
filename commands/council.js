@@ -137,7 +137,11 @@ module.exports = {
                 if (!user) return msg.channel.send(':x: Invalid user!');
                 const userinf = await client.db.table('punishments').filter({ user: { id: user.id } }).orderBy(client.db.desc('date')).run();
                 if (userinf.length == 0) return msg.channel.send(':x: This user doesn\'t have any infractions!');
-                const inftable = new Table({ head: [ 'ID', 'User', 'Moderator', 'Date', 'Type', 'Active', 'Reason' ], chars: { 'top': '', 'top-mid': '', 'top-left': '', 'top-right': '', 'bottom': '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': '', 'left': '', 'left-mid': '', 'mid': '', 'mid-mid': '', 'right': '', 'right-mid': '', 'middile': ''}});
+                const inftable = new Table({
+                     head: [ 'ID', 'User', 'Moderator', 'Date', 'Type', 'Active', 'Reason' ],
+                     chars: { 'top': '', 'top-mid': '', 'top-left': '', 'top-right': '', 'bottom': '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': '', 'left': '', 'left-mid': '', 'mid': '', 'mid-mid': '', 'right': '', 'right-mid': '', 'middile': '', }, 
+                     style: { 'padding-left': 0, 'padding-right': 0 } 
+                });
                 userinf.forEach(inf => {
                     inftable.push([ inf.id, inf.user.name, inf.author.name, inf.date, inf.type, inf.active, inf.reason ]);
                 });
