@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const Table = require('cli-table');
 module.exports = {
     run: async (client, msg, args) => {
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
@@ -131,8 +132,17 @@ module.exports = {
                 .setColor(getColor(data));
                 msg.channel.send(embed);
             } else if (args[1] == 'list') {
-                msg.channel.send(':x: This is a placeholder!');
-            } else return msg.channel.send(':x: Invalid argument! Valid arguments are `search` and `list`')
+                if (msg.mentions.users.size > 1) return msg.channel.send(':x: You must mention someone to list their infractions.');
+                const user = msg.mentions.users.first();
+                if (!user) return msg.channel.send(':x: Invalid user!');
+                const userinf = await client.db.table('punishments').filter({ user: { id: user.id } }).orderBy(client.db.desc('date')).run();
+                if (userinf.length == 0) return msg.channel.send(':x: This user doesn\'t have any infractions!');
+                const inftable = new Table();
+                userinf.forEach(inf => {
+                    inftable.push(inf);
+                });
+                msg.channel.send(`\`\`\`${inftable}\`\`\``);
+            } else return msg.channel.send(':x: Invalid argument! Valid arguments are `search` and `list`');
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, `banlist`, and `inf`.');
     },
     meta: {
