@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 module.exports = {
     run: async (client, msg, args) => {
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
