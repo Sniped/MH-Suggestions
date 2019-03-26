@@ -59,34 +59,6 @@ module.exports = {
                 msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
                 client.db.table('events').get(id).delete().run();
             }    
-        } else if (args[0] == 'punishment') {
-            if (!args[1]) return msg.channel.send(':x: You must include an ID.');
-            if (Number(args[1]) == NaN) return msg.channel.send(':x: Your ID must be a number.');
-            const id = parseInt(args[1], 10);
-            const data = await client.db.table('punishments').get(id).run();
-            if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
-            function getColor(data) {
-                let color;
-                if (data.active == false) {
-                    color = '#32CD32'
-                } else if (data.active == true) {
-                    color = '#FF0000'
-                }
-                return color;
-            }
-            function getReason(data) {
-                let reason;
-                if (data.type == 'UNBAN') {
-                    reason = 'None'
-                } else reason = data.reason;
-                return reason;
-            }
-            const embed = new Discord.RichEmbed()
-            .setTitle(`Showing data for ${data.type} ${data.id}`)
-            .setDescription(`**ID**: ${data.id}\n\n**Punished**: ${data.user.name}\n\n**Punished By:** ${data.author.name}\n\n**Active:** ${data.active}\n\n**Date Punished**: ${data.date}\n\n**Reason**: ${getReason(data)}`)
-            .setThumbnail(data.user.avatarURL)
-            .setColor(getColor(data));
-            msg.channel.send(embed);
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `feature`, `discord`, and `event`.')    
     },
     meta: {
