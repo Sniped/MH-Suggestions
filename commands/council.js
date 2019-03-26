@@ -139,8 +139,11 @@ module.exports = {
                 if (userinf.length == 0) return msg.channel.send(':x: This user doesn\'t have any infractions!');
                 const inftable = new Table({
                      head: [ 'ID', 'User', 'Moderator', 'Date', 'Type', 'Active', 'Reason' ],
-                     chars: { 'top': '', 'top-mid': '', 'top-left': '', 'top-right': '', 'bottom': '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': '', 'left': '', 'left-mid': '', 'mid': '', 'mid-mid': '', 'right': '', 'right-mid': '', 'middile': '', }, 
-                     style: { 'padding-left': 0, 'padding-right': 0 } 
+                     chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': ''
+                     , 'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': ''
+                     , 'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': ''
+                     , 'right': '' , 'right-mid': '' , 'middle': ' ' },
+                     style: { 'padding-left': 0, 'padding-right': 0 }
                 });
                 userinf.forEach(inf => {
                     inftable.push([ inf.id, inf.user.name, inf.author.name, inf.date, inf.type, inf.active, inf.reason ]);
