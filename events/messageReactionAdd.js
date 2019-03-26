@@ -5,27 +5,12 @@ module.exports = {
         if (messageReaction.message.channel.id == client.config.featurechannel) {
             channel = 'features',
             channelm = 'featuresm'
-        } else if (messageReaction.message.channel.id == client.config.pluginchannel) {
-            channel = 'plugins',
-            channelm = 'pluginsm'
         } else if (messageReaction.message.channel.id == client.config.discordchannel) {
             channel = 'discord',
             channelm = 'discordm'
         } else if (messageReaction.message.channel.id == client.config.eventchannel) {
             channel = 'events',
             channelm = 'eventsm'
-        } else if (messageReaction.message.channel.id == '546800461387399184') {
-             if (messageReaction.emoji.name == '👍') {
-                const guildu = client.guilds.get('546414872196415501').members.get(user.id);
-                const uData = await client.db.table('userData').get(user.id).run();
-                if (guildu.roles.has(client.config.staffroleid)) {
-                    messageReaction.remove(user);
-                 } else if (guildu.roles.has(client.config.councilid)) {
-                    messageReaction.remove(user);
-                 } else if (uData.banned == true) {
-                    messageReaction.remove(user);
-                 } else return user.send(':white_check_mark: Your vote has been accounted for!');             
-             }
         } 
         
 

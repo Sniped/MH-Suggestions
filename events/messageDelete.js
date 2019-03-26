@@ -6,10 +6,6 @@ module.exports = {
             channel = 'features',
             channelm = 'featuresm'
             updateDB(channel, channelm, msg);
-        } else if (msg.channel.id == client.config.pluginchannel) {
-            channel = 'plugins',
-            channelm = 'pluginsm'
-            updateDB(channel, channelm, msg);
         } else if (msg.channel.id == client.config.discordchannel) {
             channel = 'discord',
             channelm = 'discordm'

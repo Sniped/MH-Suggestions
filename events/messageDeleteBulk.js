@@ -6,9 +6,6 @@ module.exports = {
                 if (msg.channel.id == client.config.featurechannel) {
                     channel = 'features',
                     channelm = 'featuresm'
-                } else if (msg.channel.id == client.config.pluginchannel) {
-                    channel = 'plugins',
-                    channelm = 'pluginsm'
                 } else if (msg.channel.id == client.config.discordchannel) {
                     channel = 'discord',
                     channelm = 'discordm'
