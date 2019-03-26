@@ -102,9 +102,9 @@ module.exports = {
         } else if (args[0] == 'inf') {
             if (!args[1]) return msg.channel.send(':x: Invalid argument! Valid arguments are `search` and `list`');
             if (args[1] == 'search') {
-                if (!args[1]) return msg.channel.send(':x: You must include an ID.');
-                if (Number(args[1]) == NaN) return msg.channel.send(':x: Your ID must be a number.');
-                const id = parseInt(args[1], 10);
+                if (!args[2]) return msg.channel.send(':x: You must include an ID.');
+                if (Number(args[2]) == NaN) return msg.channel.send(':x: Your ID must be a number.');
+                const id = parseInt(args[2], 10);
                 const data = await client.db.table('punishments').get(id).run();
                 if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
                 function getColor(data) {
