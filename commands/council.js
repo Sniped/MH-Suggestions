@@ -141,7 +141,7 @@ module.exports = {
                 userinf.forEach(inf => {
                     inftable.push([ inf.id, inf.user.name, inf.author.name, inf.date, inf.type, inf.active, inf.reason ]);
                 });
-                msg.channel.send(`\`\`\`${inftable}\`\`\``);
+                msg.channel.send(`\`\`\`${inftable.toString()}\`\`\``);
             } else return msg.channel.send(':x: Invalid argument! Valid arguments are `search` and `list`');
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, `banlist`, and `inf`.');
     },
