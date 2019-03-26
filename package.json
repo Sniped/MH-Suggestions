@@ -9,7 +9,7 @@
   "author": "Facto",
   "license": "MIT",
   "dependencies": {
-    "cli-table3": "^0.5.1",
+    "cli-table2": "^0.2.0",
     "discord.js": "^11.4.2",
     "rethinkdbdash": "^2.3.31"
   }

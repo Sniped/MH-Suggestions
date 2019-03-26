@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Table = require('cli-table3');
+const Table = require('cli-table2');
 module.exports = {
     run: async (client, msg, args) => {
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
