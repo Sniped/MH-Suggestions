@@ -137,9 +137,9 @@ module.exports = {
                 if (!user) return msg.channel.send(':x: Invalid user!');
                 const userinf = await client.db.table('punishments').filter({ user: { id: user.id } }).orderBy(client.db.desc('date')).run();
                 if (userinf.length == 0) return msg.channel.send(':x: This user doesn\'t have any infractions!');
-                const inftable = new Table();
+                const inftable = new Table({ head: [ 'ID', 'User', 'Moderator', 'Date', 'Type', 'Active', 'Reason' ] });
                 userinf.forEach(inf => {
-                    inftable.push(inf);
+                    inftable.push([ inf.id, inf.user.name, inf.author.name, inf.date, inf.type, inf.active, inf.reason ]);
                 });
                 msg.channel.send(`\`\`\`${inftable}\`\`\``);
             } else return msg.channel.send(':x: Invalid argument! Valid arguments are `search` and `list`');
