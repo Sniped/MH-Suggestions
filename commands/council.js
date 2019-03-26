@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Table = require('cli-table');
+const Table = require('cli-table3');
 module.exports = {
     run: async (client, msg, args) => {
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, and `banlist`.');
@@ -141,7 +141,6 @@ module.exports = {
                 userinf.forEach(inf => {
                     inftable.push([ inf.id, inf.user.name, inf.author.name, inf.date, inf.type, inf.active, inf.reason ]);
                 });
-                console.log(inftable.toString());
                 msg.channel.send(`\`\`\`${inftable.toString()}\`\`\``);
             } else return msg.channel.send(':x: Invalid argument! Valid arguments are `search` and `list`');
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `reset`, `kick`, `ban`, `unban`, `banlist`, and `inf`.');
