@@ -24,7 +24,7 @@ module.exports = {
                 return ':keycap_ten:'
             } else return ':question:'
         }
-        if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `discord`, `events`, `features`, and `plugins`.');
+        if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `discord`, `events`, and `features`.');
         if (args[0] == 'discord') {
             const discordsuggestions = await client.db.table('discord').orderBy(client.db.desc('number')).limit(10).run()
             var count = 0;
