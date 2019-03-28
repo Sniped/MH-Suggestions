@@ -143,7 +143,6 @@ module.exports = {
                      , 'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': ''
                      , 'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': ''
                      , 'right': '' , 'right-mid': '' , 'middle': ' ' },
-                     style: { 'padding-left': 0, 'padding-right': 0 }
                 });
                 userinf.forEach(inf => {
                     inftable.push([ inf.id, inf.user.name, inf.author.name, inf.date, inf.type, inf.active, inf.reason ]);
