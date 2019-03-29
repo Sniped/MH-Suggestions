@@ -13,10 +13,18 @@ module.exports = {
             if (user.id == client.user.id) return;
             const data = await client.db.table(channel).filter({ message: messageReaction.message.id }).run();
             data.forEach(d => {
-                const num2insert = d.number-1
+                const num2insert = d.upvotes-1
                 if (num2insert < 0) return;
-                client.db.table(channel).get(d.id).delete().run();
+                client.db.table(channel).get(d.id).update({ upvotes: num2insert }).run();
             });
-        } else return;
+        } else if (messageReaction.emoji.id == '546435753719103488') {
+            if (user.id == client.user.id) return;
+            const data = await client.db.table(channel).filter({ message: messageReaction.message.id }).run();
+            data.forEach(d => {
+                const num2insert = d.downvotes-1
+                if (num2insert < 0) return;
+                client.db.table(channel).get(d.id).update({ downvotes: num2insert }).run();
+            });            
+        }
     }
 }
