@@ -12,9 +12,9 @@ module.exports = {
         if (messageReaction.emoji.id == '546435721444196353') {
             if (user.id == client.user.id) return;
             const data = await client.db.table(channel).filter({ message: messageReaction.message.id }).run();
-            const num2insert = data.number-1
-            if (num2insert < 0) return;
             data.forEach(d => {
+                const num2insert = d.number-1
+                if (num2insert < 0) return;
                 client.db.table(channel).get(d.id).delete().run();
             });
         } else return;

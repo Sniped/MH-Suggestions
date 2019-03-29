@@ -13,8 +13,8 @@ module.exports = {
             if (user.id == messageReaction.message.author.id) return messageReaction.remove(user);
             if (user.id != client.user.id) {
                 const data = await client.db.table(channel).filter({ message: messageReaction.message.id }).run();
-                const num2insert = data.number+1
                 data.forEach(d => {
+                    const num2insert = d.number+1
                     client.db.table(channel).get(d.id).update({ number: num2insert }).run();                   
                 });
             } else return;

@@ -8,7 +8,7 @@ module.exports = {
             const id = parseInt(args[1], 10);
             const data = await client.db.table('features').get(id).run();
             if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
-            const channel = client.channels.get(client.config.discordchannel);
+            const channel = client.channels.get(client.config.featurechannel);
             try { channel.fetchMessage(data.message).then(m => {
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
@@ -46,7 +46,7 @@ module.exports = {
             const id = parseInt(args[1], 10);
             const data = await client.db.table('events').get(id).run();
             if (!data) return msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
-            const channel = client.channels.get(client.config.discordchannel);
+            const channel = client.channels.get(client.config.eventchannel);
             try { channel.fetchMessage(data.message).then(m => {
                 const embed = new Discord.RichEmbed()
                 .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
