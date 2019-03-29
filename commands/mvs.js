@@ -26,47 +26,95 @@ module.exports = {
         }
         if (!args[0]) return msg.channel.send(':x: Invalid arguments! Valid arguments are `discord`, `events`, and `features`.');
         if (args[0] == 'discord') {
-            const discordsuggestions = await client.db.table('discord').orderBy(client.db.desc('number')).limit(10).run()
-            var count = 0;
-            let suggmsg = []
-            discordsuggestions.forEach(suggestion => {
-                count++;
-                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
-            });
-            if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
-            const embed = new Discord.RichEmbed()
-            embed.setTitle('Showing the top 10 suggestions for the Discord category')
-            embed.setColor('#388E8E');
-            embed.setDescription(suggmsg.join('\n\n'));
-            msg.channel.send(embed);
+            if (args[1] == '-a') {
+                const discordsuggestions = await client.db.table('discorda').orderBy(client.db.desc('number')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                discordsuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);
+            } else {
+                const discordsuggestions = await client.db.table('discord').orderBy(client.db.desc('number')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                discordsuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);                
+            }
         } else if (args[0] == 'events') {
-            const eventsuggestions = await client.db.table('events').orderBy(client.db.desc('number')).limit(10).run()
-            var count = 0;
-            let suggmsg = []
-            eventsuggestions.forEach(suggestion => {
-                count++;
-                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
-            });
-            if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
-            const embed = new Discord.RichEmbed()
-            embed.setTitle('Showing the top 10 suggestions for the Events category')
-            embed.setColor('#388E8E');
-            embed.setDescription(suggmsg.join('\n\n'));
-            msg.channel.send(embed);            
+            if (args[1] == '-a') {
+                const eventsuggestions = await client.db.table('eventsa').orderBy(client.db.desc('number')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                eventsuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);
+            } else {
+                const eventsuggestions = await client.db.table('events').orderBy(client.db.desc('number')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                eventsuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);                
+            }
         } else if (args[0] == 'features') {
-            const featuresuggestions = await client.db.table('features').orderBy(client.db.desc('number')).limit(10).run()
-            var count = 0;
-            let suggmsg = []
-            featuresuggestions.forEach(suggestion => {
-                count++;
-                suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
-            });
-            if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
-            const embed = new Discord.RichEmbed()
-            embed.setTitle('Showing the top 10 suggestions for the Features category')
-            embed.setColor('#388E8E');
-            embed.setDescription(suggmsg.join('\n\n'));
-            msg.channel.send(embed);                      
+            if (args[1] == '-a') {
+                const featuresuggestions = await client.db.table('featuresa').orderBy(client.db.desc('number')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                featuresuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);
+            } else {
+                const featuresuggestions = await client.db.table('features').orderBy(client.db.desc('number')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                featuresuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.number}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);                
+            }
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `discord`, `events`, and `features`.')
     },
     meta: {
