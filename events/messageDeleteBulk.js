@@ -2,23 +2,18 @@ module.exports = {
     run: async (client, msgs) => {
             msgs.map(async msg => {
                 let channel;
-                let channelm;
                 if (msg.channel.id == client.config.featurechannel) {
-                    channel = 'features',
-                    channelm = 'featuresm'
+                    channel = 'features'
                 } else if (msg.channel.id == client.config.discordchannel) {
-                    channel = 'discord',
-                    channelm = 'discordm'
+                    channel = 'discord'
                 } else if (msg.channel.id == client.config.eventchannel) {
-                    channel = 'events',
-                    channelm = 'eventsm'
+                    channel = 'events'                
                 } else return;
                 
-                const data = await client.db.table(channelm).get(msg.id).run();
-                if (data && data != null) {
-                    client.db.table(channel).get(data.id).delete().run();
-                    client.db.table(channelm).get(msg.id).delete().run();
-                } else return;            
+                const data = await client.db.table(channel).filter({ message: msg.id }).run();
+                data.forEach(d => {
+                    client.db.table(channel).get(d.id).delete().run();
+                });
             });
     }
 }

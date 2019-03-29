@@ -1,31 +1,26 @@
 module.exports = {
     run: async (client, msg) => {
         let channel;
-        let channelm;
         if (msg.channel.id == client.config.featurechannel) {
-            channel = 'features',
-            channelm = 'featuresm'
-            updateDB(channel, channelm, msg);
+            channel = 'features'
+            updateDB(channel, msg);
         } else if (msg.channel.id == client.config.discordchannel) {
-            channel = 'discord',
-            channelm = 'discordm'
-            updateDB(channel, channelm, msg);
+            channel = 'discord'
+            updateDB(channel, msg);
         } else if (msg.channel.id == client.config.eventchannel) {
-            channel = 'events',
-            channelm = 'eventsm'
-            updateDB(channel, channelm, msg);
+            channel = 'events'
+            updateDB(channel, msg);
         } else if (msg.channel.id == client.config.metachannel) {
             const user = await client.db.table(userData).get(msg.author.id).run();
             const newact = user.activity - 1
             client.db.table('userData').get(msg.author.id).update({ activity: newact }).run();
         }
         
-        async function updateDB(channel, channelm, msg) {
-            const data = await client.db.table(channelm).get(msg.id).run();
-            if (data && data != null) {
-                client.db.table(channel).get(data.id).delete().run();
-                client.db.table(channelm).get(msg.id).delete().run();
-            } else return;
+        async function updateDB(channel, msg) {
+            const data = await client.db.table(channel).filter({ message: msg.id }).run();
+            data.forEach(d => {
+                client.db.table(channel).get(d.id).delete().run();
+            });
         }
     }
 }

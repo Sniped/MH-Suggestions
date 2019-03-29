@@ -29,7 +29,6 @@ module.exports = {
             const num2insert = nData.number+1
             client.db.table('nData').get('features').update({ number: num2insert }).run();
             client.db.table('features').insert({ id: id, message: msg.id, number: 0 }).run();
-            client.db.table('featuresm').insert({ message: msg.id, id: id, number: 0 }).run();                      
         } else if (msg.channel.id == client.config.discordchannel && msg.author.id != client.user.id) {
             msg.react(client.emojis.get('546435721444196353')).then(msg.react(client.emojis.get('546435753719103488')));
             const nData = await client.db.table('nData').get('discord').run();
@@ -37,7 +36,6 @@ module.exports = {
             const num2insert = nData.number+1
             client.db.table('nData').get('discord').update({ number: num2insert }).run();
             client.db.table('discord').insert({ id: id, message: msg.id, number: 0 }).run();
-            client.db.table('discordm').insert({ message: msg.id, id: id, number: 0 }).run();            
         } else if (msg.channel.id == client.config.eventchannel && msg.author.id != client.user.id) {
             msg.react(client.emojis.get('546435721444196353')).then(msg.react(client.emojis.get('546435753719103488')));
             const nData = await client.db.table('nData').get('events').run();
@@ -45,7 +43,6 @@ module.exports = {
             const num2insert = nData.number+1
             client.db.table('nData').get('events').update({ number: num2insert }).run();
             client.db.table('events').insert({ id: id, message: msg.id, number: 0 }).run();
-            client.db.table('eventsm').insert({ message: msg.id, id: id, number: 0 }).run();         
         } else if (!msg.guild) {
             if (msg.content.toLowerCase() == 'no longer interested') {
                 const council_role = client.guilds.get('546414872196415501').roles.find(role => role.id === client.config.councilid);
