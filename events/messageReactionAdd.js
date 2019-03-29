@@ -9,7 +9,6 @@ module.exports = {
             channel = 'events'        
         } 
         
-
         if (messageReaction.emoji.id == '546435721444196353') {
             if (user.id == messageReaction.message.author.id) return messageReaction.remove(user);
             if (user.id != client.user.id) {
