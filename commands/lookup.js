@@ -75,7 +75,8 @@ module.exports = {
                     msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
                     client.db.table('features').get(id).delete().run();
                 }
-            }    
+            }
+        } else if (args[0] == 'event') {
             if (!args[1]) return msg.channel.send(':x: You must include an ID.');
             if (Number(args[1]) == NaN) return msg.channel.send(':x: Your ID must be a number.');
             const id = parseInt(args[1], 10);
@@ -111,7 +112,7 @@ module.exports = {
                     msg.channel.send(':x: Invalid ID! Maybe you looked up the wrong category?');
                     client.db.table('events').get(id).delete().run();
                 }
-            }    
+            }        
         } else return msg.channel.send(':x: Invalid arguments! Valid arguments are `feature`, `discord`, and `event`.')    
     },
     meta: {
