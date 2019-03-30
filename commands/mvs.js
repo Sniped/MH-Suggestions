@@ -80,7 +80,7 @@ module.exports = {
                 });
                 if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
                 const embed = new Discord.RichEmbed()
-                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setTitle('Showing the top 10 suggestions for the Events category')
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);
@@ -94,21 +94,21 @@ module.exports = {
                 });
                 if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
                 const embed = new Discord.RichEmbed()
-                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setTitle('Showing the top 10 suggestions for the Events category')
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);                
             } else {
-                const featuresuggestions = await client.db.table('features').orderBy(client.db.desc('upvotes')).limit(10).run();
+                const eventsuggestions = await client.db.table('events').orderBy(client.db.desc('upvotes')).limit(10).run();
                 var count = 0;
                 let suggmsg = []
-                featuresuggestions.forEach(suggestion => {
+                eventsuggestions.forEach(suggestion => {
                     count++;
                     suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.upvotes} | **Downvotes**: ${suggestion.downvotes}`);
                 });
                 if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
                 const embed = new Discord.RichEmbed()
-                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setTitle('Showing the top 10 suggestions for the Events category')
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);                
@@ -124,7 +124,7 @@ module.exports = {
                 });
                 if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
                 const embed = new Discord.RichEmbed()
-                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setTitle('Showing the top 10 suggestions for the Features category')
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);
@@ -138,7 +138,7 @@ module.exports = {
                 });
                 if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
                 const embed = new Discord.RichEmbed()
-                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setTitle('Showing the top 10 suggestions for the Features category')
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);                
@@ -152,7 +152,7 @@ module.exports = {
                 });
                 if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
                 const embed = new Discord.RichEmbed()
-                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setTitle('Showing the top 10 suggestions for the Features category')
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);                
