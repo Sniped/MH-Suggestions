@@ -29,7 +29,7 @@ module.exports = {
                 try { channel.fetchMessage(data.message).then(m => {
                     const embed = new Discord.RichEmbed()
                     .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
-                    .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}`)
+                    .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.upvotes}\n\n**Downvotes**: ${data.downvotes}`)
                     .setThumbnail(m.author.avatarURL)
                     .setColor('#388E8E');
                     msg.channel.send(embed);
@@ -66,7 +66,7 @@ module.exports = {
                 try { channel.fetchMessage(data.message).then(m => {
                     const embed = new Discord.RichEmbed()
                     .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
-                    .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}`)
+                    .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.upvotes}\n\n**Downvotes**: ${data.downvotes}`)
                     .setThumbnail(m.author.avatarURL)
                     .setColor('#388E8E');
                     msg.channel.send(embed);
@@ -103,7 +103,7 @@ module.exports = {
                 try { channel.fetchMessage(data.message).then(m => {
                     const embed = new Discord.RichEmbed()
                     .setTitle(`Showing data for ${args[0]} suggestion ${data.id}`)
-                    .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.number}`)
+                    .setDescription(`**ID**: ${data.id}\n\n**Author**: ${m.author.username}\n\n**Suggestion**: ${m.content}\n\n**Upvotes**: ${data.upvotes}\n\n**Downvotes**: ${data.downvotes}`)
                     .setThumbnail(m.author.avatarURL)
                     .setColor('#388E8E');
                     msg.channel.send(embed);
