@@ -40,8 +40,22 @@ module.exports = {
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);
+            } else if (args[1] == '-d') {
+                const discordsuggestions = await client.db.table('discord').orderBy(client.db.desc('downvotes')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                discordsuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.upvotes} | **Downvotes**: ${suggestion.downvotes}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);                
             } else {
-                const discordsuggestions = await client.db.table('discord').orderBy(client.db.desc('number')).limit(10).run();
+                const discordsuggestions = await client.db.table('discord').orderBy(client.db.desc('upvotes')).limit(10).run();
                 var count = 0;
                 let suggmsg = []
                 discordsuggestions.forEach(suggestion => {
@@ -70,11 +84,25 @@ module.exports = {
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);
-            } else {
-                const eventsuggestions = await client.db.table('events').orderBy(client.db.desc('number')).limit(10).run();
+            } else if (args[1] == '-d') {
+                const eventsuggestions = await client.db.table('events').orderBy(client.db.desc('downvotes')).limit(10).run();
                 var count = 0;
                 let suggmsg = []
                 eventsuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.upvotes} | **Downvotes**: ${suggestion.downvotes}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);                
+            } else {
+                const featuresuggestions = await client.db.table('features').orderBy(client.db.desc('upvotes')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                featuresuggestions.forEach(suggestion => {
                     count++;
                     suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.upvotes} | **Downvotes**: ${suggestion.downvotes}`);
                 });
@@ -100,8 +128,22 @@ module.exports = {
                 embed.setColor('#388E8E');
                 embed.setDescription(suggmsg.join('\n\n'));
                 msg.channel.send(embed);
+            } else if (args[1] == '-d') {
+                const featuresuggestions = await client.db.table('features').orderBy(client.db.desc('downvotes')).limit(10).run();
+                var count = 0;
+                let suggmsg = []
+                featuresuggestions.forEach(suggestion => {
+                    count++;
+                    suggmsg.push(`${getEmoji(count)} **ID**: ${suggestion.id} | **Upvotes**: ${suggestion.upvotes} | **Downvotes**: ${suggestion.downvotes}`);
+                });
+                if (suggmsg.length == 0) return msg.channel.send(':x: There are no suggestions for this category!');
+                const embed = new Discord.RichEmbed()
+                embed.setTitle('Showing the top 10 suggestions for the Discord category')
+                embed.setColor('#388E8E');
+                embed.setDescription(suggmsg.join('\n\n'));
+                msg.channel.send(embed);                
             } else {
-                const featuresuggestions = await client.db.table('features').orderBy(client.db.desc('number')).limit(10).run();
+                const featuresuggestions = await client.db.table('features').orderBy(client.db.desc('upvotes')).limit(10).run();
                 var count = 0;
                 let suggmsg = []
                 featuresuggestions.forEach(suggestion => {
