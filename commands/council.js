@@ -12,7 +12,7 @@ module.exports = {
             const winners = await client.db.table('userData').orderBy(client.db.desc('activity')).limit(5).run();
             const winnercheck = [];
             winners.forEach(w => {
-                if (w.activity == 0) {
+                if (w.activity != 0) {
                     winnercheck.push(w.id);
                 }
             });
