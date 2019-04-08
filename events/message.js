@@ -1,4 +1,5 @@
 const fs = require('fs');
+const Discord = require('discord.js');
 module.exports = {
     run: async (client, msg) => {
         if (msg.author.bot) return;
@@ -59,6 +60,20 @@ module.exports = {
             if (!member.roles.has('546420543713312800') && !member.roles.has('546415221212839947') && !msg.author.bot && !user.banned) {
                 const newact = user.activity + 1
                 client.db.table('userData').get(msg.author.id).update({ activity: newact }).run();
+            } else if (user.banned) {
+                const punishments = await client.db.table('punishments').filter({ user: { id: user.id }, type: 'BAN', active: true }).run();
+                const p = punishments[0];
+                if (user.notifications.banmsg != false) {
+                    const embed = new Discord.RichEmbed()
+                    .setDescription('You are permanently banned from the Player Council!')
+                    .addField('ID', p.id, true)
+                    .addField('Moderator', p.author.tag, true)
+                    .addField('Reason', p.reason, true)
+                    .addField('Punished', p.date.toString())
+                    .setColor('#FF0000')
+                    .setFooter(`To stop this message from appearing, simply execute the command '!settings ban-msg false' in the MH Suggestions discord.`);
+                    user.send(embed);        
+                } else return;
             } else return;
         }      
     }
