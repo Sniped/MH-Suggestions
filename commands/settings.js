@@ -23,12 +23,10 @@ module.exports = {
             }
         } else return msg.channel.send(':x: Invalid args! Valid arguments are `ban-msg`');
     },
-    meta: {
         meta: {
             aliases: ['settings'],
             description: 'Manage certain preferences',
             permlvl: 0,
             usage: ''
         }        
-    }
 }
