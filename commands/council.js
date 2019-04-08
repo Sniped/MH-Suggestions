@@ -30,6 +30,7 @@ module.exports = {
             const user = msg.mentions.users.first();
             if (msg.mentions.users.size < 1) return msg.channel.send(':x: You must mention a council member!');
             const member = client.guilds.get('546414872196415501').members.get(user.id);
+            if (client.checkPerms(msg, member) == false) return msg.channel.send(':x: User cannot be kicked.')
             const council_role = msg.guild.roles.get(client.config.councilid);
             if (!member.roles.has(council_role.id)) return msg.channel.send(':x: The user doesn\'t have council!');
             const reason = args.slice(2).join(' ');
@@ -45,6 +46,7 @@ module.exports = {
             const user = msg.mentions.users.first();
             if (msg.mentions.users.size < 1) return msg.channel.send(':x: You must mention someone to ban from the council!');
             const member = msg.guild.members.get(user.id);
+            if (client.checkPerms(msg, member) == false) return msg.channel.send(':x: User cannot be banned.');
             const council_role = msg.guild.roles.get(client.config.councilid);
             const reason = args.slice(2).join(' ');
             if (!reason) return msg.channel.send(':x: You must include a reason for banning this user!');

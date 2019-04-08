@@ -58,3 +58,10 @@ client.elevation = msg => {
     if (msg.author.id === client.config.ownerid) permlvl = 5;
     return permlvl;
 }
+
+client.checkPerms = (msg, member) => {
+    let punishable;
+    let staff_role = msg.guild.roles.find(role => role.id === client.config.staffroleid);
+    if (staff_role && member.roles.has(staff_role.id)) punishable = false;    
+    return punishable; 
+}
