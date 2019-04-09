@@ -63,7 +63,7 @@ module.exports = {
             } else if (user.banned) {
                 const punishments = await client.db.table('punishments').filter({ user: { id: user.id }, type: 'BAN', active: true }).run();
                 const p = punishments[0];
-                if (user.notifications.banmsg != false) {
+                if (!user.notifications.banmsg || user.notifications.banmsg != false) {
                     const embed = new Discord.RichEmbed()
                     .setDescription('You are permanently banned from the Player Council!')
                     .addField('ID', p.id, true)
