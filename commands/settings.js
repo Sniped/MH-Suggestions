@@ -6,7 +6,7 @@ module.exports = {
             const userData = await client.db.table('userData').get(user.id).run();
             if (args[1] == 'true') {
                 if (!userData.notifications.banmsg) {
-                    client.db.table('userData').get(user.id).insert({ notifications: { banmsg: true } }).run();
+                    client.db.table('userData').get(user.id).update({ notifications: { banmsg: true } }).run();
                     msg.channel.send(':white_check_mark: Ban messages are now set to true!');
                 } else {
                     client.db.table('userData').get(user.id).update({ notifications: { banmsg: true } }).run();
@@ -14,7 +14,7 @@ module.exports = {
                 }
             } else if (args[1] == 'false') {
                 if (!userData.notifications.banmsg) {
-                    client.db.table('userData').get(user.id).insert({ notifications: { banmsg: false } }).run();
+                    client.db.table('userData').get(user.id).update({ notifications: { banmsg: false } }).run();
                     msg.channel.send(':white_check_mark: Ban messages are now set to false!');
                 } else {
                     client.db.table('userData').get(user.id).update({ notifications: { banmsg: false } }).run();
