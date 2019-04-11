@@ -67,7 +67,7 @@ module.exports = {
                     const embed = new Discord.RichEmbed()
                     .setDescription('You are permanently banned from the Player Council!')
                     .addField('ID', p.id, true)
-                    .addField('Moderator', p.author.tag, true)
+                    .addField('Moderator', p.author.name, true)
                     .addField('Reason', p.reason, true)
                     .addField('Punished', p.date.toString())
                     .setColor('#FF0000')
