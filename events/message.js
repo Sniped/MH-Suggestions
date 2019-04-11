@@ -73,7 +73,7 @@ module.exports = {
                     .setColor('#FF0000')
                     .setFooter(`To stop this message from appearing, simply execute the command '!settings ban-msg false' in the MH Suggestions discord.`);
                     const u = client.users.get(user.id);
-                    u.send(embed);        
+                    u.send(embed).catch();        
                 } else return;
             } else return;
         }      
