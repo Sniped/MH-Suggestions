@@ -3,23 +3,13 @@ module.exports = {
         if (!args[0]) return msg.channel.send(':x: Invalid args! Valid arguments are `ban-msg`');
         if (args[0] == 'ban-msg') {
             if (!args[1]) return msg.channel.send(':x: You must provide a boolean for whether you want ban messages or not.');
-            const userData = await client.db.table('userData').get(user.id).run();
-            if (args[1] == 'true') {
-                if (!userData.notifications.banmsg) {
-                    client.db.table('userData').get(user.id).update({ notifications: { banmsg: true } }).run();
-                    msg.channel.send(':white_check_mark: Ban messages are now set to true!');
-                } else {
-                    client.db.table('userData').get(user.id).update({ notifications: { banmsg: true } }).run();
-                    msg.channel.send(':white_check_mark: Ban messages are now set to true!');
-                }
-            } else if (args[1] == 'false') {
-                if (!userData.notifications.banmsg) {
-                    client.db.table('userData').get(user.id).update({ notifications: { banmsg: false } }).run();
-                    msg.channel.send(':white_check_mark: Ban messages are now set to false!');
-                } else {
-                    client.db.table('userData').get(user.id).update({ notifications: { banmsg: false } }).run();
-                    msg.channel.send(':white_check_mark: Ban messages are now set to false!');
-                }                
+            const userData = await client.db.table('userData').get(msg.author.id).run();
+            if (userData.notifications.banmsg == true) {
+                client.db.table('userData').get(msg.author.id).update({ notifications: { banmsg: false } }).run();
+                msg.channel.send(':white_check_mark: Set ban message notifications to false.');
+            } else if (userData.notifications.banmsg == false) {
+                client.db.table('userData').get(msg.author.id).update({ notifications: { banmsg: true } }).run();
+                msg.channel.send(':white_check_mark: Set ban message notifications to true.');                
             }
         } else return msg.channel.send(':x: Invalid args! Valid arguments are `ban-msg`');
     },
