@@ -23,24 +23,27 @@ module.exports = {
                 console.log(err);
             }
         } else if (msg.channel.id == client.config.featurechannel && msg.author.id != client.user.id) {
-            await msg.react(client.emojis.get('546435721444196353'));
-            await msg.react(client.emojis.get('546435753719103488'));
+            msg.react(client.emojis.get('546435721444196353')).then(() => {
+                msg.react(client.emojis.get('546435753719103488'));
+            });
             const nData = await client.db.table('nData').get('features').run();
             const id = nData.number
             const num2insert = nData.number+1
             client.db.table('nData').get('features').update({ number: num2insert }).run();
             client.db.table('features').insert({ id: id, message: msg.id, upvotes: 0, downvotes: 0 }).run();
         } else if (msg.channel.id == client.config.discordchannel && msg.author.id != client.user.id) {
-            await msg.react(client.emojis.get('546435721444196353'));
-            await msg.react(client.emojis.get('546435753719103488'));
+            msg.react(client.emojis.get('546435721444196353')).then(() => {
+                msg.react(client.emojis.get('546435753719103488'));
+            });
             const nData = await client.db.table('nData').get('discord').run();
             const id = nData.number
             const num2insert = nData.number+1
             client.db.table('nData').get('discord').update({ number: num2insert }).run();
             client.db.table('discord').insert({ id: id, message: msg.id, upvotes: 0, downvotes: 0 }).run();
         } else if (msg.channel.id == client.config.eventchannel && msg.author.id != client.user.id) {
-            await msg.react(client.emojis.get('546435721444196353'));
-            await msg.react(client.emojis.get('546435753719103488'));
+            msg.react(client.emojis.get('546435721444196353')).then(() => {
+                msg.react(client.emojis.get('546435753719103488'));
+            });
             const nData = await client.db.table('nData').get('events').run();
             const id = nData.number
             const num2insert = nData.number+1
